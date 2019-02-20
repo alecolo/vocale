@@ -26,7 +26,7 @@ public class JDatiCondivisi {
         this.variabileCondivisa = variabileCondivisa;
     }
     
-    public void incVariabileCond()
+    public synchronized void incVariabileCond()
     {
         variabileCondivisa++;
     }

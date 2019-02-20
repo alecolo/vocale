@@ -19,25 +19,19 @@ public class JIncrementatoreTh extends Thread {
     private int nCicli = 1000;
     private JDatiCondivisi dC;
     private Semaforo s;
-    private boolean usaMutex;
 
     //Metodi
     public JIncrementatoreTh(JDatiCondivisi dC, Semaforo s, boolean usaMutex, int nCicli) {
 
         this.dC = dC;
         this.s = s;
-        this.usaMutex = usaMutex;
         this.nCicli = nCicli;
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         for (int i = 0; i < nCicli; i++) {
-            if(usaMutex)
-                s.Wait();
             dC.incVariabileCond();
-            if(usaMutex)
-                s.Signal();
         }
     }
 }
